@@ -52,7 +52,7 @@ def main():
 
     apt = st.number_input('Enter Your Latest Aptitude Score Here :')
 
-    ss = st.slider('Enter Your Soft Skill Rating (Out f 5)', min_value=0, max_value=5, step = 0.1)
+    ss = st.slider('Enter Your Soft Skill Rating (Out f 5)', min_value=0.0, max_value=5.0, step = 0.1)
 
     ext = (lambda x: 0 if x=='No' else 1)(st.radio('Are You Endulge in Any Extra Curricular Activities', ['Yes', "No"]))
 

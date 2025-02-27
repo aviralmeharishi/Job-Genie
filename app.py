@@ -10,7 +10,7 @@ with open('final_model.pkl', 'rb') as file:
 
 def predictor(inputs):
     inputs = np.array(inputs, dtype= object)
-    pred = model.predict_proba([inputs])[::1][0]
+    pred = model.predict_proba([inputs])[0][1]
 
 
     if pred > 0.25:

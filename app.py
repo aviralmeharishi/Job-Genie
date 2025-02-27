@@ -17,14 +17,14 @@ def predictor(inputs):
         results = f'''✅ You Have Quite Strong Chances of Getting Placed in a Company So Maintain Your Consistency and Keep Working Hard
     Your Probability Of Getting Placed is {round(pred, 5)}
     Take Care!'''
-        st.error(results)
+        st.success(results)
         return results  # This ensures the function exits here
     
     else:
         result = f'''⚠️ You Have Quite Weak Chances of Getting Placed in a Company but don't worry You can achieve anything by just Working Hard
     Your Probability Of Getting Placed is {round(pred, 5)}
     Stay Healthy!'''
-        st.success(result)
+        st.error(result)
         return result
 
 

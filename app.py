@@ -13,7 +13,7 @@ def predictor(inputs):
     pred = model.predict_proba([inputs])[0][1]
 
 
-    if pred > 0.25:
+    if pred > 0.5:
         results = f'''✅ You Have Quite Strong Chances of Getting Placed in a Company So Maintain Your Consistency and Keep Working Hard
     Your Probability Of Getting Placed is {round(pred, 5)}
     Take Care!'''

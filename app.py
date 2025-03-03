@@ -10,13 +10,25 @@ with open('final_model.pkl', 'rb') as file:
 
 # Configure Gemini AI with Streamlit Secrets
 GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
-genai.configure(api_key=GOOGLE_API_KEY)
-
-def generate_suggestions(prediction):
+genai.configure(api_key=GOOGLE_API_KEY)def generate_suggestions(prediction):
     """Generate AI-powered career suggestions using Gemini 2.0 Flash."""
-    prompt = f"Provide career improvement generalised as well as personalised suggestions for a student with a placement probability of {prediction:.2f}. in both english and hindi and if probability is low make them feel motivated and if it is high prevent them from being overconfident"
-    response = genai.GenerativeModel("gemini-2.0").generate_content(prompt)
-    return response.text if response else "No suggestions available.
+    model = genai.GenerativeModel("gemini-2.0")  # Initialize the Gemini model
+    
+    prompt = f"""
+    Provide career improvement suggestions in both English and Hindi for a student with a placement probability of {prediction:.2f}.
+    
+    - If the probability is low, provide motivational advice to boost their confidence and encourage them.
+    - If the probability is high, give guidance to prevent overconfidence and suggest ways to continue improving.
+    - Include both general career tips and personalized advice based on the probability.
+    """
+    
+    response = model.generate_content(prompt)  # Generate AI response
+    
+    if response and hasattr(response, "text"):
+        return response.text  # Extract text response
+    else:
+        return "No suggestions available at the moment."
+
 
 
 def predictor(inputs):
@@ -40,15 +52,26 @@ def predictor(inputs):
     
     return results
 
-
 def chatbot():
-    """Simple Gemini AI chatbot for career guidance."""
-    st.subheader("🤖 Ask Job Genie (AI Chatbot)")
-    user_input = st.text_input("Heyy , I am your Job Genie!!!!, Ask me anything about careers, skills, or jobs:")
-    if st.button("Ask AI") and user_input:
-        response = genai.GenerativeModel("gemini-2.0").generate_content(user_input)
-        st.write("### 🤖 Job Genie AI Says:")
-        st.write(response.text if response else "I'm unable to process your request.")
+    """AI-powered chatbot for career guidance using Gemini 2.0."""
+    st.subheader("🤖 Job Genie - Your AI Career Coach!")
+    st.write("👋 Hi! I am **Job Genie**, your AI-powered career assistant. Ask me anything about jobs, skills, career growth, or placements, and I'll guide you! 🚀")
+
+    user_input = st.text_input("✨ What's on your mind? (e.g., 'How can I improve my resume?' or 'What skills do I need for Data Science?')")
+
+    if st.button("🔮 Ask Job Genie"):
+        if user_input:
+            model = genai.GenerativeModel("gemini-2.0")  # Initialize Gemini AI
+            response = model.generate_content(user_input)  # Get AI response
+
+            if response and hasattr(response, "text"):
+                st.write("### 🤖 Job Genie Says:")
+                st.write(response.text)
+            else:
+                st.write("⚠️ Oops! I couldn't generate a response. Please try again.")
+        else:
+            st.warning("🚀 Please enter a question before clicking 'Ask Job Genie'.")
+
 
 
 def main():

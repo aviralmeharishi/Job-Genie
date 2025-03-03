@@ -1,3 +1,5 @@
-lightgbm
+numpy
+pandas
 streamlit
 scikit-learn
+google-generativeai

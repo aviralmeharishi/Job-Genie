@@ -15,8 +15,8 @@ genai.configure(api_key=GOOGLE_API_KEY)
 def generate_suggestions(prediction):
     """Generate AI-powered career suggestions using Gemini 2.0 Flash."""
     prompt = f"Provide career improvement generalised as well as personalised suggestions for a student with a placement probability of {prediction:.2f}. in both english and hindi and if probability is low make them feel motivated and if it is high prevent them from being overconfident"
-    response = genai.chat(model="gemini-2-flash", messages=[{"role": "user", "content": prompt}])
-    return response.text
+    response = genai.GenerativeModel("gemini-2.0").generate_content(prompt)
+    return response.text if response else "No suggestions available.
 
 
 def predictor(inputs):
@@ -46,9 +46,9 @@ def chatbot():
     st.subheader("🤖 Ask Job Genie (AI Chatbot)")
     user_input = st.text_input("Heyy , I am your Job Genie!!!!, Ask me anything about careers, skills, or jobs:")
     if st.button("Ask AI") and user_input:
-        response = genai.chat(model="gemini-2-flash", messages=[{"role": "user", "content": user_input}])
+        response = genai.GenerativeModel("gemini-2.0").generate_content(user_input)
         st.write("### 🤖 Job Genie AI Says:")
-        st.write(response.text)
+        st.write(response.text if response else "I'm unable to process your request.")
 
 
 def main():

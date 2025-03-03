@@ -17,7 +17,7 @@ def generate_suggestions(prediction):
     model = genai.GenerativeModel("gemini-1.5-flash")  # ✅ Using a supported model
     
     prompt = f"""
-    Provide career improvement suggestions in both English and Hindi for a student with a placement probability of {prediction:.2f}.
+    Provide career improvement suggestions in both English and Hindi (normal chat wali hindi boht pure hindi nahi) for a student with a placement probability of {prediction:.2f}.
     
     - If the probability is low, provide motivational advice to boost their confidence and encourage them.
     - If the probability is high, give guidance to prevent overconfidence and suggest ways to continue improving.

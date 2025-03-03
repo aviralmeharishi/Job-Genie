@@ -1,0 +1,28 @@
+# Ignore API keys
+.streamlit/secrets.toml
+
+# Ignore virtual environments
+venv/
+env/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore model files (if necessary)
+*.pkl
+*.h5
+*.joblib
+
+# Ignore dataset files (if applicable)
+*.csv
+*.xlsx
+
+# Ignore Jupyter Notebook checkpoints (if used)
+.ipynb_checkpoints/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db

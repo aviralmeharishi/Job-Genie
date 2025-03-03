@@ -10,7 +10,8 @@ with open('final_model.pkl', 'rb') as file:
 
 # Configure Gemini AI with Streamlit Secrets
 GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
-genai.configure(api_key=GOOGLE_API_KEY)def generate_suggestions(prediction):
+genai.configure(api_key=GOOGLE_API_KEY)
+def generate_suggestions(prediction):
     """Generate AI-powered career suggestions using Gemini 2.0 Flash."""
     model = genai.GenerativeModel("gemini-2.0")  # Initialize the Gemini model
     
